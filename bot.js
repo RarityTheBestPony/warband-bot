@@ -1,29 +1,46 @@
 const Discord = require('discord.js');
+const bot = new Discord.Client();
 
-const client = new Discord.Client();
-
- 
-
-client.on('ready', () => {
+bot.on('ready', () => {
 
     console.log('I am ready!');
 
 });
 
- 
+bot.on('message', function (user, userID, channelID, message, evt) {
 
-client.on('message', message => {
+    switch(message) {
 
-    if (message.content === 'ping') {
-
-       message.reply('pong');
-
-       }
-
+        case 'Шинку':
+        case 'шинку':
+            bot.sendMessage({
+                to: channelID,
+                message: 'Шинку пидор!'
+            });
+        break;
+        case 'Ашот':
+        case 'ашот':
+            bot.sendMessage({
+                to: channelID,
+                message: 'Ашот пидор!'
+            });
+        break;
+        case 'Ингнар':
+        case 'ингнар':
+            bot.sendMessage({
+                to: channelID,
+                message: 'Ингнар красавчик!'
+            });
+        break;
+        case 'Рарити':
+        case 'рарити':
+            bot.sendMessage({
+                to: channelID,
+                message: 'Рарити красавчик!'
+            });
+        break;
+        
+     }
 });
-
  
-
-// THIS  MUST  BE  THIS  WAY
-
-client.login(process.env.BOT_TOKEN);//where BOT_TOKEN is the token of our bot
+bot.login(process.env.BOT_TOKEN);
