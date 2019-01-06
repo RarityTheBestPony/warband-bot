@@ -1,17 +1,20 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
 
-bot.on('ready', () => {
+const client = new Discord.Client();
+
+ 
+
+client.on('ready', () => {
 
     console.log('I am ready!');
 
 });
 
-bot.on('message', function (user, userID, channelID, message, evt) {
+ 
 
-    switch(message) {
+client.on('message', function (user, userID, channelID, message, evt) {
 
-        case '#server':
+    case '#server':
         case 'есть кто на сервере?':
         case 'Есть кто на сервере?':
         case 'играете?':
@@ -116,5 +119,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         
      }
 });
+
  
-bot.login(process.env.BOT_TOKEN);
+
+// THIS  MUST  BE  THIS  WAY
+
+client.login(process.env.NTI3MDUxOTQ1OTI4NTU2NTU0.DwOHSA.HQZromI6nfUwT7ljjTN20fxY7l8);
