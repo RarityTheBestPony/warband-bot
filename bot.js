@@ -20,29 +20,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     switch(message) {
-        case '#server':
-            var client = new net.Socket();
-
-            client.connect(6553, '178.63.11.244', function() {
-                console.log('Connected');
-            });
-            client.on('data', function(data) {
-                var numberOfPlayers = parseInt(data.toString().split('<NumberOfActivePlayers>').pop().split('</NumberOfActivePlayers>')[0]);
-                if(numberOfPlayers > 0){
-                    bot.sendMessage({
-                        to: bChannelID,
-                        message: 'На сервере ' + numberOfPlayers + " игроков! Заходите играть!"
-                    });
-                } else{
-                    bot.sendMessage({
-                        to: bChannelID,
-                        message: 'На сервере никого нет! Может пора начать?'
-                    });
-                }
-                
-                client.destroy(); // kill client after server's response
-            });
-            break;
         case 'Шинку':
         case 'шинку':
             bot.sendMessage({
