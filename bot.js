@@ -12,84 +12,13 @@ bot.on('ready', () => {
 
  
 
-bot.on('message', function (user, userID, channelID, message, evt) {
+bot.on('message', message => {
 
-    switch(message) {
-        case 'Шинку':
-        case 'шинку':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Шинку пидор!'
-            });
-            break;
-        case 'Сырный':
-        case 'сырный':
-        case 'Сырно':
-        case 'сырно':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Сырный пидор!'
-            });
-            break;
-        case 'Ашот':
-        case 'ашот':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Ашот пидор!'
-            });
-            break;
-        case 'Ингнар':
-        case 'ингнар':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Ингнар молодец!'
-            });
-            break;
-        case 'Рарити':
-        case 'рарити':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Рарити молодец!'
-            });
-            break;
-        case 'Мариса':
-        case 'мариса':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Мариса трап!'
-            });
-            break;
-        case 'Данила':
-        case 'данила':
-        case 'дани':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Данила любит Рикардо!'
-            });
-            break;
-        case 'Хельвете':
-        case 'хельвете':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Хельвете даун!'
-            });
-            break;
-        case 'Кулсон':
-        case 'кулсон':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Кулсон поставь сервак!'
-            });
-            break;
-        case 'Фенрир':
-        case 'фенрир':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Фенрир, че делал на выходных?'
-            });
-            break;
-        
-     }
+    if (message.content === 'ping') {
+
+       message.reply('pong');
+
+       }
 
 });
 
