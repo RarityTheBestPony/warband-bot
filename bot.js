@@ -16,17 +16,11 @@ bot.on('ready', () => {
 
  
 
-bot.on('message', message => {
-
+bot.on('message', function (user, userID, channelID, message, evt) {
+    // Our bot needs to know if it will execute a command
+    // It will listen for messages that will start with `!`
     switch(message) {
-
         case '#server':
-        case 'есть кто на сервере?':
-        case 'Есть кто на сервере?':
-        case 'играете?':
-        case 'Играете?':
-        case 'есть кто?':
-        case 'Есть кто?':
             var client = new net.Socket();
 
             client.connect(6553, '178.63.11.244', function() {
@@ -62,7 +56,7 @@ bot.on('message', message => {
         case 'сырно':
             bot.sendMessage({
                 to: channelID,
-                message: 'Сырный пидор!'
+                message: 'Шинку пидор!'
             });
             break;
         case 'Ашот':
@@ -122,9 +116,7 @@ bot.on('message', message => {
                 message: 'Фенрир, че делал на выходных?'
             });
             break;
-        
      }
-
 });
 
  
