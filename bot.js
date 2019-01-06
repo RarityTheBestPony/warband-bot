@@ -1,29 +1,20 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
 const net = require('net');
 const bChannelID = '501417274016661504';
 
  
-
-bot.on('ready', () => {
-
-    console.log('I am ready!');
-
+var bot = new Discord.Client({
+   token: process.env.BOT_TOKEN,
+   autorun: true
 });
 
  
 
-bot.on('message', message => {
-
-    switch(message) {
-
-        case '#server':
-        case 'есть кто на сервере?':
-        case 'Есть кто на сервере?':
-        case 'играете?':
-        case 'Играете?':
-        case 'есть кто?':
-        case 'Есть кто?':
+bot.on('message', function (user, userID, channelID, message, evt) {
+    // Our bot needs to know if it will execute a command
+    // It will listen for messages that will start with `!`
+    switch(true) {
+        case (message == '#server'):
             var client = new net.Socket();
 
             client.connect(6553, '178.63.11.244', function() {
@@ -46,8 +37,7 @@ bot.on('message', message => {
                 client.destroy(); // kill client after server's response
             });
             break;
-        case 'Шинку':
-        case 'шинку':
+        case (message.toLowerCase().indexOf("шинку") == -1):
             bot.sendMessage({
                 to: channelID,
                 message: 'Шинку пидор!'
@@ -119,13 +109,5 @@ bot.on('message', message => {
                 message: 'Фенрир, че делал на выходных?'
             });
             break;
-        
      }
-
 });
-
- 
-
-// THIS  MUST  BE  THIS  WAY
-
-bot.login(process.env.BOT_TOKEN);//where BOT_TOKEN is the token of our bot
