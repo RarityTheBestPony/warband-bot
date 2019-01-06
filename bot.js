@@ -16,84 +16,28 @@ bot.on('ready', () => {
 
  
 
-bot.on('message', function (user, userID, channelID, message, evt) {
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-    switch(message) {
-        case 'Шинку':
-        case 'шинку':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Шинку пидор!'
-            });
-            break;
-        case 'Сырный':
-        case 'сырный':
-        case 'Сырно':
-        case 'сырно':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Шинку пидор!'
-            });
-            break;
-        case 'Ашот':
-        case 'ашот':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Ашот пидор!'
-            });
-            break;
-        case 'Ингнар':
-        case 'ингнар':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Ингнар молодец!'
-            });
-            break;
-        case 'Рарити':
-        case 'рарити':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Рарити молодец!'
-            });
-            break;
-        case 'Мариса':
-        case 'мариса':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Мариса трап!'
-            });
-            break;
-        case 'Данила':
-        case 'данила':
-        case 'дани':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Данила любит Рикардо!'
-            });
-            break;
-        case 'Хельвете':
-        case 'хельвете':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Хельвете даун!'
-            });
-            break;
-        case 'Кулсон':
-        case 'кулсон':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Кулсон поставь сервак!'
-            });
-            break;
-        case 'Фенрир':
-        case 'фенрир':
-            bot.sendMessage({
-                to: channelID,
-                message: 'Фенрир, че делал на выходных?'
-            });
-            break;
-     }
+bot.on('message', message => {
+
+    if (message.content === '#server') {
+       var client = new net.Socket();
+
+       client.connect(6553, '178.63.11.244', function() {
+           console.log('Connected');
+       });
+     
+       client.on('data', function(data) {
+           var numberOfPlayers = parseInt(data.toString().split('<NumberOfActivePlayers>').pop().split('</NumberOfActivePlayers>')[0]);
+           if(numberOfPlayers > 0){
+               message.reply('На сервере ' + numberOfPlayers + " игроков! Заходите играть!");
+           } else{
+               message.reply('На сервере никого нет! Может пора начать?');
+           }
+           client.destroy(); // kill client after server's response
+       });
+       
+
+       }
+
 });
 
  
