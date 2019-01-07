@@ -18,7 +18,7 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-    if (message.content === '#server') {
+    if (message.content === '!server') {
         var client = new net.Socket();
 
         client.connect(6553, '178.63.11.244', function() {
